@@ -3,140 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi niña 💗</title>
+    <title>Carta para mi niña 💗</title>
     <style>
+        /* Centrado total en la pantalla */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background-color: #ffeef2;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
 
-        /* Contenedor de la tarjeta */
-        .card {
+        /* Contenedor principal que evita que la carta se "salga" */
+        .card-container {
             position: relative;
-            width: 400px;
-            height: 550px;
-            cursor: pointer;
-            perspective: 1500px;
-            transition: transform 0.5s;
+            width: 350px;
+            height: 500px;
+            perspective: 1500px; /* Profundidad para el giro */
         }
 
-        /* El cuerpo de la tarjeta (las dos mitades) */
-        .card-inner {
+        /* La carta en sí */
+        .card {
             width: 100%;
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-radius: 15px;
+            transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: left; /* Eje de giro a la izquierda */
         }
 
-        /* Al pasar el mouse, se abre como un libro */
-        .card:hover .card-inner {
+        /* Abrir la carta al pasar el mouse */
+        .card-container:hover .card {
             transform: rotateY(-160deg);
         }
 
-        /* Estilo general para las caras */
-        .front, .back {
+        /* Caras de la carta */
+        .face {
             position: absolute;
             width: 100%;
             height: 100%;
+            border-radius: 15px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 15px;
-            padding: 40px;
+            padding: 20px;
             box-sizing: border-box;
-            border: 2px solid #ff85a2;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* Cara frontal (la tapa) */
+        /* Portada (Rosa) */
         .front {
             background-color: #ff85a2;
             z-index: 2;
             color: white;
+            border: 2px solid #f07090;
         }
 
         .front h2 {
-            font-size: 32px;
-            text-align: center;
-            margin: 0;
-        }
-
-        .front .heart-icon {
-            font-size: 80px;
-            margin-top: 20px;
-        }
-
-        /* Cara interior (donde está el mensaje) */
-        .back {
-            background-color: #fff;
-            transform: rotateY(180deg);
-            z-index: 1;
-            text-align: center;
-        }
-
-        .back h1 {
-            color: #d81b60;
             font-size: 28px;
-            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .back p {
-            font-size: 22px;
-            color: #555;
+        /* Interior (Blanco/Rosa suave) */
+        .inside {
+            background-color: #ffffff;
+            transform: rotateY(180deg); /* Volteada por defecto */
+            z-index: 1;
+            border: 2px solid #ff85a2;
+        }
+
+        /* Contenido del mensaje */
+        .content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .content h1 {
+            color: #d81b60;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            color: #444;
+            font-size: 18px;
             line-height: 1.5;
         }
 
-        .cake-emoji {
+        .cake {
             font-size: 70px;
-            margin: 20px 0;
+            margin: 15px 0;
+            display: block;
         }
 
-        .love-text {
+        .footer {
             color: #ff1493;
             font-weight: bold;
-            font-size: 24px;
-            margin-top: 20px;
+            font-size: 20px;
+            margin-top: 15px;
         }
 
-        /* Instrucción pequeña abajo */
-        .instruction {
+        /* Fondo de la base para que no se vea vacío al abrir */
+        .card-base {
             position: absolute;
-            bottom: -40px;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: center;
-            color: #ff85a2;
-            font-weight: bold;
+            height: 100%;
+            background-color: #fffafa;
+            border-radius: 15px;
+            z-index: 0;
+            border: 2px solid #ff85a2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="card-inner">
-            <!-- Portada de la carta -->
-            <div class="front">
-                <h2>¡Tengo una sorpresa para vos!</h2>
-                <div class="heart-icon">💗</div>
+    <div class="card-container">
+        <!-- Parte de atrás fija (lo que queda en la mesa al abrir) -->
+        <div class="card-base">
+             <div class="content">
+                <span class="cake">🎂</span>
+                <p class="footer">¡Disfruta tu día!</p>
+             </div>
+        </div>
+
+        <!-- La parte que se mueve (Portada e Interior) -->
+        <div class="card">
+            <!-- PORTADA -->
+            <div class="face front">
+                <h2>¡Feliz Cumpleaños!</h2>
+                <span style="font-size: 50px;">🎁</span>
+                <p>Tocame para abrir</p>
             </div>
 
-            <!-- Interior de la carta -->
-            <div class="back">
-                <h1>¡Feliz Cumple mi niña!</h1>
-                <p>Que la pases muy lindo en tu día...</p>
-                <div class="cake-emoji">🎂</div>
-                <div class="love-text">T amo muchooooo 💗</div>
+            <!-- INTERIOR -->
+            <div class="face inside">
+                <div class="content">
+                    <h1>¡Feliz cumple mi niña!</h1>
+                    <p>Que la pases muy lindo en tu día y t amo muchooooo 💗</p>
+                    <span class="cake">🎂</span>
+                </div>
             </div>
         </div>
-        <div class="instruction">Pasa el ratón (o toca) para abrir ➔</div>
     </div>
 
 </body>
