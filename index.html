@@ -1,47 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>¡Feliz Cumpleaños!</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f0f0f0;
-}
-.card {
-  width: 600px; /* Tamaño de la carta aumentado */
-  margin: 50px auto;
-  background-color: #ffc0cb; /* Fondo rosa para la carta */
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  overflow: hidden; /* Oculta la tarta inicialmente */
-  transition: max-height 0.5s ease; /* Efecto de apertura suave */
-}
-.card:hover {
-  max-height: 1000px; /* Altura máxima para mostrar la tarta al pasar el ratón */
-}
-h1 {
-  color: #ff69b4; /* Color rosa para el título */
-  margin-top: 0;
-}
-p {
-  font-size: 24px; /* Tamaño de fuente aumentado */
-}
-img {
-  width: 100%;
-  display: block; /* Muestra la imagen de la tarta */
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi niña 💗</title>
+    <style>
+        :root {
+            --color-sobre: #ff85a2;
+            --color-sobre-oscuro: #f07090;
+            --color-carta: #fff0f5;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Contenedor del sobre */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--color-sobre);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Solapa del sobre */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid var(--color-sobre-oscuro);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        /* Lados del sobre */
+        .envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid var(--color-sobre);
+            bottom: 0;
+        }
+
+        /* La Carta */
+        .card {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 280px;
+            height: 180px;
+            background-color: var(--color-carta);
+            z-index: 1;
+            transition: transform 0.6s ease, height 0.6s ease;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #d81b60;
+            margin: 5px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .cake {
+            font-size: 50px; /* Torta grande */
+            margin-top: 10px;
+        }
+
+        /* Animación al pasar el mouse */
+        .envelope-wrapper:hover .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper:hover .card {
+            transform: translateY(-150px);
+            height: 320px; /* Se agranda al salir */
+            width: 320px;
+            left: -10px;
+            z-index: 4;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .heart {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            font-size: 30px;
+            color: white;
+            transition: opacity 0.3s;
+        }
+
+        .envelope-wrapper:hover .heart {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
-<div class="card">
-  <h1>¡Feliz Cumpleaños!</h1>
-  <p>Mi niña,</p>
-  <p>¡Que la pases muy lindo en tu día!</p>
-  <p>T amo muchooooo 💗</p>
-  <img src="https://via.placeholder.com/600x450.png?text=Tarta+de+Cumpleaños" alt="Tarta de Cumpleaños">
-</div>
+
+    <div class="envelope-wrapper">
+        <div class="heart">💗</div>
+        <div class="envelope">
+            <div class="card">
+                <h2>¡Feliz Cumple mi niña!</h2>
+                <p>Que la pases muy lindo en tu día...</p>
+                <div class="cake">🎂</div>
+                <p style="font-weight: bold; color: #ff1493;">T amo muchooooo 💗</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
-
