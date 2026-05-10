@@ -1,3 +1,7 @@
+import ds_python_interpreter
+
+# Código HTML/CSS para la carta de cumpleaños
+html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,141 +9,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi niña 💗</title>
     <style>
-        :root {
-            --color-sobre: #ff85a2;
-            --color-sobre-oscuro: #f07090;
-            --color-carta: #fff0f5;
-        }
-
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #ffe4e1;
+            background-color: #fce4ec; /* Rosa muy clarito de fondo */
             font-family: 'Arial', sans-serif;
         }
 
-        /* Contenedor del sobre */
-        .envelope-wrapper {
+        /* Contenedor principal centrado */
+        .container {
             position: relative;
-            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
         }
 
-        .envelope {
+        .envelope-wrapper {
             position: relative;
-            width: 300px;
-            height: 200px;
-            background-color: var(--color-sobre);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 450px; /* Más grande */
+            height: 300px;
+            background-color: #ff85a2; /* Rosa del sobre */
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
         /* Solapa del sobre */
-        .envelope::before {
-            content: "";
+        .flap {
             position: absolute;
             top: 0;
-            z-index: 2;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-top: 100px solid var(--color-sobre-oscuro);
-            transform-origin: top;
-            transition: transform 0.5s ease;
-        }
-
-        /* Lados del sobre */
-        .envelope::after {
-            content: "";
-            position: absolute;
-            z-index: 3;
+            left: 0;
             width: 0;
             height: 0;
-            border-left: 150px solid transparent;
-            border-right: 150px solid transparent;
-            border-bottom: 100px solid var(--color-sobre);
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-top: 170px solid #f07090; /* Color un poco más oscuro */
+            border-radius: 15px 15px 0 0;
+            transform-origin: top;
+            transition: transform 0.6s ease, z-index 0.6s;
+            z-index: 3;
+        }
+
+        /* Lados del sobre (frente) */
+        .envelope-front {
+            position: absolute;
             bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 225px solid #ff9db5;
+            border-right: 225px solid #ff9db5;
+            border-bottom: 150px solid #ff85a2;
+            z-index: 4;
+            border-radius: 0 0 15px 15px;
         }
 
         /* La Carta */
-        .card {
+        .letter {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 280px;
-            height: 180px;
-            background-color: var(--color-carta);
-            z-index: 1;
-            transition: transform 0.6s ease, height 0.6s ease;
-            padding: 20px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 90%;
+            background-color: white;
+            z-index: 2;
+            padding: 30px;
             box-sizing: border-box;
             text-align: center;
-            border-radius: 5px;
-            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.7s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
 
-        .card h2 {
-            font-size: 18px;
+        .letter h1 {
+            font-size: 26px;
             color: #d81b60;
-            margin: 5px 0;
+            margin-bottom: 10px;
         }
 
-        .card p {
-            font-size: 14px;
-            color: #555;
-            margin: 5px 0;
+        .letter p {
+            font-size: 20px;
+            color: #444;
+            line-height: 1.4;
         }
 
-        .cake {
-            font-size: 50px; /* Torta grande */
-            margin-top: 10px;
+        .cake-emoji {
+            font-size: 60px;
+            margin: 15px 0;
         }
 
-        /* Animación al pasar el mouse */
-        .envelope-wrapper:hover .envelope::before {
+        /* Animación al interactuar */
+        .envelope-wrapper:hover .flap {
             transform: rotateX(180deg);
-            z-index: 0;
+            z-index: 1;
         }
 
-        .envelope-wrapper:hover .card {
-            transform: translateY(-150px);
-            height: 320px; /* Se agranda al salir */
-            width: 320px;
-            left: -10px;
-            z-index: 4;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        .envelope-wrapper:hover .letter {
+            transform: translate(-50%, -180px); /* Sube de forma limpia */
+            z-index: 2;
         }
 
-        .heart {
+        /* Corazón decorativo en la solapa */
+        .heart-seal {
             position: absolute;
-            top: 45%;
+            top: 140px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 4;
-            font-size: 30px;
-            color: white;
-            transition: opacity 0.3s;
+            transform: translateX(-50%);
+            z-index: 5;
+            font-size: 40px;
+            transition: opacity 0.4s;
         }
 
-        .envelope-wrapper:hover .heart {
+        .envelope-wrapper:hover .heart-seal {
             opacity: 0;
+        }
+
+        span.highlight {
+            color: #ff1493;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="envelope-wrapper">
-        <div class="heart">💗</div>
-        <div class="envelope">
-            <div class="card">
-                <h2>¡Feliz Cumple mi niña!</h2>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="flap"></div>
+            <div class="heart-seal">💗</div>
+            
+            <div class="letter">
+                <h1>¡Feliz Cumple mi niña!</h1>
                 <p>Que la pases muy lindo en tu día...</p>
-                <div class="cake">🎂</div>
-                <p style="font-weight: bold; color: #ff1493;">T amo muchooooo 💗</p>
+                <div class="cake-emoji">🎂</div>
+                <span class="highlight">T amo muchooooo 💗</span>
             </div>
+
+            <div class="envelope-front"></div>
         </div>
     </div>
 
 </body>
 </html>
+"""
+
+# Guardar el archivo
+with open("carta_cumpleaños.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
