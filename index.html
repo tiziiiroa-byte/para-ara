@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Feliz Cumpleaños</title>
+<title>¡Feliz Cumpleaños!</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -9,21 +9,28 @@ body {
   background-color: #f0f0f0;
 }
 .card {
-  width: 400px;
+  width: 600px; /* Tamaño de la carta aumentado */
   margin: 50px auto;
-  background-color: #fff;
+  background-color: #ffc0cb; /* Fondo rosa para la carta */
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 10px;
+  overflow: hidden; /* Oculta la tarta inicialmente */
+  transition: max-height 0.5s ease; /* Efecto de apertura suave */
+}
+.card:hover {
+  max-height: 1000px; /* Altura máxima para mostrar la tarta al pasar el ratón */
 }
 h1 {
-  color: #ff69b4;
+  color: #ff69b4; /* Color rosa para el título */
+  margin-top: 0;
 }
 p {
-  font-size: 18px;
+  font-size: 24px; /* Tamaño de fuente aumentado */
 }
 img {
   width: 100%;
+  display: block; /* Muestra la imagen de la tarta */
 }
 </style>
 </head>
@@ -33,7 +40,8 @@ img {
   <p>Mi niña,</p>
   <p>¡Que la pases muy lindo en tu día!</p>
   <p>T amo muchooooo 💗</p>
-  <img src="https://via.placeholder.com/400x300.png?text=Tarta+de+Cumpleaños" alt="Tarta de Cumpleaños">
+  <img src="https://via.placeholder.com/600x450.png?text=Tarta+de+Cumpleaños" alt="Tarta de Cumpleaños">
 </div>
 </body>
 </html>
+
